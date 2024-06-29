@@ -1,15 +1,16 @@
 {
-  "name": "Figma-Export-Svg-React-Icons-Plugin",
+  "name": "figma-export-svg-react-icons-plugin",
   "version": "1.0.0",
-  "description": "Your Figma Plugin",
+  "description": "Export Figma icons to React ready svg code",
   "main": "code.js",
+  "repository": "https://github.com/Lou-i3/Figma-Export-Svg-React-Icons-Plugin",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "lint": "eslint --ext .ts,.tsx --ignore-pattern node_modules .",
     "lint:fix": "eslint --ext .ts,.tsx --ignore-pattern node_modules --fix .",
     "watch": "npm run build -- --watch"
   },
-  "author": "",
+  "author": "Lou-i3",
   "license": "",
   "devDependencies": {
     "@figma/eslint-plugin-figma-plugins": "*",
