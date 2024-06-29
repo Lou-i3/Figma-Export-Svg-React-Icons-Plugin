@@ -1,0 +1,92 @@
+<html>
+    <header>
+        <style>
+          @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+          * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+          }
+    body {
+      background-color: black;
+      width: 300px;
+      height: 300px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-family: 'Lato';
+      padding: 8px;
+    }
+    button {
+      width: fit-content;
+      padding: 4px 8px;
+      background-color: rgb(232, 186, 20);
+      cursor: pointer;
+      border: 0;
+    }
+    .codeWrapper {
+      height: 100%;
+      overflow: scroll;
+    }
+    code {
+      font-size: 10px;
+    }
+        </style>
+    </header>
+    <body>
+        <h2>Export Svg React Icons</h2>
+        <button id="copy">Copy</button>
+        <div class="codeWrapper">
+          <code id="code">Please select an icon.</code>
+        </div>
+        <!-- <button id="cancel">Close</button> -->
+    </body>
+    <footer>
+        <script>
+
+onmessage = (event) => {
+  // console.log("got this from the plugin code", event.data.pluginMessage)
+
+  const code = document.getElementById("code").innerText = event.data.pluginMessage;
+}
+
+document.getElementById('copy').onclick = () => {
+  // Get the text field
+  var copyText = document.getElementById("code").innerText;
+
+   // Copy the text inside the text field
+  //navigator.clipboard.writeText(copyText);
+  writeTextToClipboard(copyText)
+  //console.log('copied: ', copyText)
+};
+
+function writeTextToClipboard(str) 
+{
+    const prevActive = document.activeElement;
+    const textArea   = document.createElement('textarea');
+
+    textArea.value = str;
+
+    textArea.style.position = 'fixed';
+    textArea.style.left     = '-999999px';
+    textArea.style.top      = '-999999px';
+    
+    document.body.appendChild(textArea);
+    
+    textArea.focus();
+    textArea.select();
+    
+    return new Promise((res, rej) => 
+    {
+        document.execCommand('copy') ? res() : rej();
+        textArea.remove();
+        
+        prevActive.focus();
+    });
+}
+
+//console.log("plugin loaded")
+        </script>
+    </footer>
+</html>
